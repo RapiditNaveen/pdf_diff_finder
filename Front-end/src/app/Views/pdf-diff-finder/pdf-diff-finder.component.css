@@ -1,0 +1,48 @@
+#diff-finder {
+  width: 100%;
+  padding: 100px 0;
+  background-color: #f7f8f9;
+  min-height: 100vh;
+}
+
+#diff-finder .file-upload {
+  display: flex;
+  justify-content: space-between;
+}
+
+#diff-finder .file-select {
+  width: 50%;
+  text-align: center;
+}
+
+#diff-finder .file-select h4 {
+  margin-bottom: 25px;
+}
+
+#diff-finder .submit {
+  text-align: center;
+  margin-top: 50px;
+}
+
+#diff-finder .file-content {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+#diff-finder .file-content .p-element {
+  width: 50%;
+}
+
+:host::ng-deep #diff-finder .original .p-element .p-card .p-card-body {
+  background-color: #ffcbbd;
+}
+
+:host::ng-deep #diff-finder .target .p-element .p-card .p-card-body {
+  background-color: #c8f0da
+}
+
+:host::ng-deep #diff-finder .target .p-element .p-card .p-card-body .highlight{
+  background-color: #8ee0b6;;
+}
+

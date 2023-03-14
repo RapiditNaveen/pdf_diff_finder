@@ -1,0 +1,56 @@
+<div id="diff-finder">
+  <p-toast></p-toast>
+  <div class="container">
+    <div class="file-upload">
+      <div class="file-select">
+        <h4>Original PDF</h4>
+        <p-fileUpload
+          #fileUpload
+          mode="basic"
+          name="originalFile"
+          (onSelect)="onFileUpload($event, 'orginal')"
+          chooseLabel="Browse"
+          accept=".pdf"
+        ></p-fileUpload>
+        <div class="file-content original" *ngIf="originalFileContent">
+          <p-card>{{ originalFileContent }}</p-card>
+        </div>
+      </div>
+      <div class="file-select">
+        <h4>Changed PDF</h4>
+        <p-fileUpload
+          #fileUpload
+          mode="basic"
+          name="targetFile"
+          (onSelect)="onFileUpload($event, 'target')"
+          chooseLabel="Browse"
+          accept=".pdf"
+        ></p-fileUpload>
+        <div
+          #targetFileContents
+          class="file-content target"
+          *ngIf="targetFileContent"
+        >
+          <p-card
+            ><div
+              class="content-diff"
+              [innerHTML]="
+                originalFileContent | highlightDifferences : targetFileContent
+              "
+            ></div
+          ></p-card>
+        </div>
+      </div>
+    </div>
+    <div class="submit">
+      <button
+        pButton
+        pRipple
+        type="submit"
+        label="Find Difference"
+        class="p-button-success"
+        (click)="compareFiles()"
+      ></button>
+    </div>
+  </div>
+</div>
