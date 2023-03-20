@@ -1,35 +1,27 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'highlightDifferences'
+  name: 'highlightDifferences',
 })
 export class HighlightDifferencesPipe implements PipeTransform {
 
   transform(original: string, modified: string): string {
-    if (!original || !modified) {
-      return '';
-    }
+    const originalWords = original.split(' ');
+    const modifiedWords = modified.split(' ');
 
-    let output = '';
-    let i = 0;
-    let j = 0;
+    let result = '';
 
-    while (i < original.length && j < modified.length) {
-      if (original[i] !== modified[j]) {
-        output += '<span class="highlight">' + modified[j] + '</span>';
+    for (let i = 0; i < originalWords.length || i < modifiedWords.length; i++) {
+      const originalWord = originalWords[i] || '';
+      const modifiedWord = modifiedWords[i] || '';
+
+      if (originalWord === modifiedWord) {
+        result += originalWord + ' ';
       } else {
-        output += modified[j];
+        result += '<span class="highlight">' + modifiedWord + '</span> ';
       }
-
-      i++;
-      j++;
     }
 
-    while (j < modified.length) {
-      output += '<span class="highlight">' + modified[j] + '</span>';
-      j++;
-    }
-
-    return output;
+    return result.trim();
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PdfDiffFinderService } from '../../services/pdf-diff-finder.service';
 import { MessageService } from 'primeng/api';
+import { PdfDifferences } from 'src/app/interfaces/pdf-differences';
 
 @Component({
   selector: 'app-pdf-diff-finder',
@@ -15,7 +16,7 @@ export class PdfDiffFinderComponent implements OnInit {
   public uploadedFiles: any[] = [];
   public originalFileContent = '';
   public targetFileContent = '';
-  public differences = [];
+  public differences: PdfDifferences[] = [];
 
   constructor(
     private pdfDiffFinderService: PdfDiffFinderService,
@@ -39,7 +40,7 @@ export class PdfDiffFinderComponent implements OnInit {
     if (this.uploadedFiles.length === 2) {
       this.pdfDiffFinderService.comparePdfFiles(formData).subscribe(
         (res) => {
-          if (res.success === true) {
+          if (res.status === 200) {
             this.originalFileContent = res.data ? res.data.textInOriginal : '';
             this.targetFileContent = res.data ? res.data.textInTarget : '';
             this.differences = res.data ? res.data.differences : [];

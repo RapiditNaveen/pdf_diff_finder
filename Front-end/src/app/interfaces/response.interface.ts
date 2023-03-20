@@ -1,5 +1,7 @@
+import { PdfDiffResponse } from './pdf-diff-response';
+
 export interface Response {
-  success:boolean;
-  message:string;
-  data:any
+  status: number;
+  message: string;
+  data: PdfDiffResponse;
 }

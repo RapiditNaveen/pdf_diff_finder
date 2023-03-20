@@ -7,11 +7,11 @@
 
 #diff-finder .file-upload {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 #diff-finder .file-select {
-  width: 50%;
+  width: 40%;
   text-align: center;
 }
 
@@ -31,7 +31,7 @@
 }
 
 #diff-finder .file-content .p-element {
-  width: 50%;
+  width: 100%;
 }
 
 :host::ng-deep #diff-finder .original .p-element .p-card .p-card-body {
