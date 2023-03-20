@@ -27,7 +27,7 @@ async function comparePdfFiles(req, res) {
     differences
   };
 
-  const res_arr = resModel.sendResponse(data, "pdf compared successfully");
+  const res_arr = resModel.sendResponse(200, data, "pdf compared successfully");
   res.send(res_arr);
 }
 
@@ -36,7 +36,7 @@ async function getText(file) {
 
   // Wait for the PDF to be loaded
   const pdf = await loadingTask.promise;
-
+  
   // Get the first page of the PDF
   const pageNumber = 1;
   const page = await pdf.getPage(pageNumber);
@@ -44,7 +44,7 @@ async function getText(file) {
   // Extract text from the PDF page
   const content = await page.getTextContent();
 
-  // Convert the content to a string
+  // Convert the content array to a string
   const text = content.items.map((item) => item.str).join("");
 
   loadingTask.promise.catch((error) => {

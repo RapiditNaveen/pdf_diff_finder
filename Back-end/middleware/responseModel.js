@@ -1,17 +1,17 @@
-module.exports.sendResponse = function (result, message) {
+module.exports.sendResponse = function (code, result, message) {
   var response = {};
   response = {
-    success: true,
+    status: code,
     message: message,
     data: result,
   };
   return response;
 };
-module.exports.sendError = function (error, errorMessages = []) {
+module.exports.sendError = function (code, error, errorMessages = []) {
   {
     var response = {};
     response = {
-      success: false,
+      success: code,
       message: errorMessages,
       data: error,
     };
